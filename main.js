@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { createClient } from '@supabase/supabase-js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 // ---------- Supabase (global counter) ----------
 const supabaseUrl = window.SUPABASE_URL;
@@ -65,6 +66,10 @@ scene.add(new THREE.AmbientLight(0xffffff, 0.6)); // 👈 extra base light so th
 
 // Load model
 const loader = new GLTFLoader();
+const draco = new DRACOLoader();
+draco.setDecoderPath('https://unpkg.com/three@0.160.0/examples/jsm/libs/draco/');
+loader.setDRACOLoader(draco);
+
 const modelUrl = './assets/casita-draco.glb';
 let modelGroup = new THREE.Group();
 scene.add(modelGroup);
