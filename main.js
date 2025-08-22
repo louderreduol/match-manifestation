@@ -60,6 +60,8 @@ scene.add(hemi);
 const dir = new THREE.DirectionalLight(0xffffff, 0.6);
 dir.position.set(2, 3, 2);
 scene.add(dir);
+scene.add(new THREE.AmbientLight(0xffffff, 0.6)); // 👈 extra base light so the model isn’t black
+
 
 // Load model
 const loader = new GLTFLoader();
@@ -69,17 +71,24 @@ scene.add(modelGroup);
 
 loader.load(modelUrl, (gltf) => {
   const root = gltf.scene;
-  // Normalize the model to a reasonable size and center
+
+  // --- center & scale the model so it fits the camera view ---
   const box = new THREE.Box3().setFromObject(root);
-  const size = new THREE.Vector3();
-  const center = new THREE.Vector3();
-  box.getSize(size);
-  box.getCenter(center);
-  const scale = 1 / Math.max(size.x, size.y, size.z);
+  const size = new THREE.Vector3(); box.getSize(size);
+  const center = new THREE.Vector3(); box.getCenter(center);
+  const maxDim = Math.max(size.x, size.y, size.z);
+  const scale = 0.8 / maxDim;            // scale a bit smaller so it fits nicely
   root.scale.setScalar(scale);
-  root.position.sub(center.multiplyScalar(scale));
+  root.position.sub(center.multiplyScalar(scale)); // move model to origin
+
   root.traverse(o => { if (o.isMesh) { o.castShadow = o.receiveShadow = true; } });
   modelGroup.add(root);
+
+  // --- aim the camera at the model & pull back a bit ---
+  controls.target.set(0, 0, 0);
+  camera.position.set(0.9, 0.6, 1.4);
+  camera.lookAt(controls.target);
+  camera.updateProjectionMatrix();
 }, undefined, (err) => {
   console.error('GLB load error', err);
 });
