@@ -65,7 +65,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 0.6)); // 👈 extra base light so th
 
 // Load model
 const loader = new GLTFLoader();
-const modelUrl = './assets/casita-file.glb';
+const modelUrl = './assets/casita-draco.glb';
 let modelGroup = new THREE.Group();
 scene.add(modelGroup);
 
