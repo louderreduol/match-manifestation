@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Three.js Fire Toggle Test</title>
+  <title>Casita — 3D Viewer</title>
   <style>
     html,body { margin:0; height:100%; background:#0b0b0b; color:#fff; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; }
     #app { position:relative; width:100%; height:100vh; }
@@ -12,7 +12,7 @@
     #btn { margin-top:8px; padding:6px 10px; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.08); color:#fff; border-radius:8px; cursor:pointer; }
   </style>
 
-  <!-- ESM imports -->
+  <!-- ESM imports from CDN -->
   <script type="importmap">
   {
     "imports": {
@@ -23,7 +23,7 @@
   </script>
 </head>
 <body>
-  <div id="app" aria-label="3D test">
+  <div id="app">
     <canvas id="three" aria-hidden="true"></canvas>
     <div id="hud">
       <div><strong>Status:</strong> <span id="status">loading…</span></div>
@@ -31,7 +31,8 @@
       <button id="btn" type="button">Toggle Fire</button>
     </div>
   </div>
-  <!-- ✅ updated to main.js -->
+
   <script type="module" src="./main.js"></script>
 </body>
 </html>
+
