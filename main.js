@@ -129,3 +129,4 @@ btn.addEventListener('click', () => {
 // render loop
 function loop(){ controls.update(); renderer.render(scene, camera); requestAnimationFrame(loop); }
 requestAnimationFrame(loop);
+// debug
