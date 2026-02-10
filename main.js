@@ -21,6 +21,7 @@ renderer.setSize(app.clientWidth, app.clientHeight, false);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 const scene = new THREE.Scene();
+window.scene = scene;
 scene.background = new THREE.Color(0x0b0b0b);
 
 const camera = new THREE.PerspectiveCamera(50, app.clientWidth/app.clientHeight, 0.01, 100);
