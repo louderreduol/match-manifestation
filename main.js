@@ -94,7 +94,7 @@ function loadFirstWorking(i = 0) {
       scene.add(root);
 
       // Find the mesh named exactly "fire" (Object name in Blender Outliner)
-      fire = root.getObjectByName('fire') || null;
+      fire = root.getObjectByName('Fire') || null;
       if (!fire) {
         statusEl.textContent += ' | ⚠️ mesh "fire" not found';
       } else {
