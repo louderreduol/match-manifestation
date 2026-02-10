@@ -115,19 +115,29 @@ function loadFirstWorking(i = 0) {
 loadFirstWorking();
 
 // Toggle "fire" on canvas click or button
+// Toggle "fire" on canvas click or button
+function setFire(nextOn) {
+  if (!fire) return;
+
+  const wasOn = fire.visible;
+  fire.visible = nextOn;
+
+  // Only count when turning OFF -> ON
+  if (!wasOn && nextOn) {
+    incrementCount();
+  }
+
+  updateVisLabel();
+}
+
 renderer.domElement.addEventListener('pointerdown', () => {
   if (!fire) return;
-  fire.visible = !fire.visible;
-  updateVisLabel();
-});
-btn.addEventListener('click', () => {
-  if (!fire) return;
-  fire.visible = !fire.visible;
-  updateVisLabel();
+  setFire(!fire.visible);
 });
 
-// render loop
-function loop(){ controls.update(); renderer.render(scene, camera); requestAnimationFrame(loop); }
-requestAnimationFrame(loop);
-// debug
+btn.addEventListener('click', () => {
+  if (!fire) return;
+  setFire(!fire.visible);
+});
+
 
